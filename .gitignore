@@ -1,0 +1,10 @@
+target/
+frontend/node_modules/
+frontend/dist/
+data/
+.tools/
+.idea/
+frontend/.npm-cache/
+src/main/resources/input/*.docx
+src/main/resources/input/archive/
+src/main/resources/input/error/

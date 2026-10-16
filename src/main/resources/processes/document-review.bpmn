@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" targetNamespace="https://demo.ru/workflow">
+  <process id="documentReview" name="Индексация и просмотр документа" isExecutable="true" camunda:historyTimeToLive="30">
+    <startEvent id="start" name="Новый DOCX"/>
+    <sequenceFlow id="f1" sourceRef="start" targetRef="index"/>
+    <serviceTask id="index" name="Прочитать DOCX и сохранить заявку" camunda:delegateExpression="${indexDocument}"/>
+    <sequenceFlow id="f2" sourceRef="index" targetRef="review"/>
+    <userTask id="review" name="Просмотр заявки"/>
+    <sequenceFlow id="f3" sourceRef="review" targetRef="end"/>
+    <endEvent id="end" name="Просмотрено"/>
+  </process>
+  <bpmndi:BPMNDiagram id="diagram"><bpmndi:BPMNPlane id="plane" bpmnElement="documentReview">
+    <bpmndi:BPMNShape id="start_di" bpmnElement="start"><dc:Bounds x="100" y="120" width="36" height="36"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="index_di" bpmnElement="index"><dc:Bounds x="200" y="98" width="150" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="review_di" bpmnElement="review"><dc:Bounds x="420" y="98" width="130" height="80"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNShape id="end_di" bpmnElement="end"><dc:Bounds x="620" y="120" width="36" height="36"/></bpmndi:BPMNShape>
+    <bpmndi:BPMNEdge id="f1_di" bpmnElement="f1"><di:waypoint x="136" y="138"/><di:waypoint x="200" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="f2_di" bpmnElement="f2"><di:waypoint x="350" y="138"/><di:waypoint x="420" y="138"/></bpmndi:BPMNEdge>
+    <bpmndi:BPMNEdge id="f3_di" bpmnElement="f3"><di:waypoint x="550" y="138"/><di:waypoint x="620" y="138"/></bpmndi:BPMNEdge>
+  </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>
+</definitions>
